@@ -3,7 +3,7 @@ import struct
 import cv2
 import numpy as np
 from PIL import Image
-
+from pathlib import Path
 
 SCALE_FACTOR = 4
 ANCHOR_SIZE = 16
@@ -102,5 +102,10 @@ def decode_3marker_grid(grid_image_path, output_image_path="restored.png"): #res
 
 
 if __name__ == "__main__":
-  grid_path = input("Enter QR-style grid image path to decode: ").strip()
+  file_path = Path("pix_qr.png")
+  if file_path.is_file():
+    grid_path = file_path
+  else:
+    grid_path = input("Enter QR-style grid image path to decode: ").strip()
+
   decode_3marker_grid(grid_path)
