@@ -2,6 +2,7 @@ import math
 import struct
 from PIL import Image, ImageOps
 import numpy as np
+from pathlib import Path
 
 SCALE_FACTOR = 4
 BORDER_SIZE = 30
@@ -71,5 +72,10 @@ def encode_3marker_grid(image_path, output_path="pix_qr.png"): #pix_qr.png is th
 
 
 if __name__ == "__main__":
-  source_path = input("Enter source image path to encode: ").strip()
+  file_path = Path("image.jpeg")
+  if file_path.is_file():
+    source_path = file_path
+  else:
+    source_path = input("Enter source image path to encode: ").strip()
+
   encode_3marker_grid(source_path)
